@@ -1,0 +1,54 @@
+server:
+  port: 8086
+##routing config can also be achieved through bean config of RouteLocator. Refer bean config for example
+spring:
+  application:
+    name: API-GATEWAY
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: USERSERVICE
+#          uri: lb://USERSERVICE
+#          predicates:
+#            - Path= /users/**
+#        - id: HOTELSERVICE
+#          uri: lb://HOTELSERVICE
+#          predicates:
+#            - Path= /hotels/**
+#        - id: RATINGSERVICE
+#          uri: lb://RATINGSERVICE
+#          predicates:
+#            - Path= /ratings/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8766/eureka
+  instance:
+    prefer-ip-address: true
+
+#as we are using directly okta starter dependency so we dont have to define property like ->
+#spring:
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          okta:
+#            client-id: <your-client-id>
+#            client-secret: <your-client-secret>
+#            scope: openid, profile, email
+#            redirect-uri: "{baseUrl}/login/oauth2/code/okta"
+#        provider:
+#          okta:
+#            issuer-uri: https://<your-okta-domain>/oauth2/default
+okta:
+  oauth2:
+    issuer: https://dev-36547386.okta.com/oauth2/default
+    client-id: 0oamkds580TNHWlap5d7
+    client-secret: yEJ1LPNa9czY7le0_OXKA8cC0JqyUdLP9uYtMnM5I5MrXnA-cxM_QsyQoZgPhAVF
+    scopes: profile, openid, email, offline_access
+    audience: api://default
+    redirect_uri: /authorization-code/callback
+
+
+
